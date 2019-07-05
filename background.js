@@ -6,37 +6,65 @@ function onCreated() {
   }
 }
 
+console.log(`Context menus are: ${JSON.stringify(browser.contextMenus)}`);
+
 // FIXME: TODO: Refactor ids to be unique, switch on them rather than directly parsing their values.
 browser.menus.create({
-    id: "-25",
+    id: "resize-video_-25",
     title: "-25%",
     // see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/menus/ContextType
     contexts: ["video", "image", "selection"]
 }, onCreated);
 
 browser.menus.create({
-    id: "-50",
+    id: "resize-video_-50",
     title: "-50%",
     contexts: ["video", "image", "selection"]
 }, onCreated);
 
 browser.menus.create({
-    id: "25",
+    id: "resize-video_25",
     title: "+25%",
     contexts: ["video", "image", "selection"]
 }, onCreated);
 
 browser.menus.create({
-    id: "50",
+    id: "resize-video_50",
     title: "+50%",
     contexts: ["video", "image", "selection"]
 }, onCreated);
 
 browser.menus.create({
-    id: "100",
+    id: "resize-video_100",
     title: "+100%",
     contexts: ["video", "image", "selection"]
 }, onCreated);
+
+function getWholePercentForMenuItem(menuItemId) {
+  let percentForId = 0;
+
+  switch(menuItemId) {
+    case "resize-video_-25":
+      percentForId = -25;
+      break;
+    case "resize-video_-50":
+      percentForId = -50;
+      break;
+    case "resize-video_25":
+      percentForId = 25;
+      break;
+    case "resize-video_50":
+      percentForId = 50;
+      break;
+    case "resize-video_100":
+      percentForId = 100;
+      break;
+    default:
+      break;
+  }
+
+  return percentForId;
+}
 
 browser.contextMenus.onClicked.addListener(function (info, tab) {
 
@@ -49,9 +77,11 @@ chrome.tabs.executeScript(tab.id, {
     chrome.tabs.executeScript(tab.id, {file: 'content.js'});
 });
 */
+  let menuItemId = info.menuItemId
+  let percentForId = getWholePercentForMenuItem(menuItemId);
 
   // Nested executeScript code block get picky about parsing, so we need to stringify our code params.
-  let resizeParams = { resizeAmount: parseInt(info.menuItemId), targetElementId: info.targetElementId };
+  let resizeParams = { resizeAmount: percentForId, targetElementId: info.targetElementId };
   let stringyParams = JSON.stringify(resizeParams);
   
   console.debug(`Resize params are: ${stringyParams}`);
