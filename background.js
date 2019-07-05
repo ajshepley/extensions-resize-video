@@ -32,6 +32,12 @@ browser.menus.create({
     contexts: ["video", "image", "selection"]
 }, onCreated);
 
+browser.menus.create({
+    id: "100",
+    title: "+100%",
+    contexts: ["video", "image", "selection"]
+}, onCreated);
+
 browser.contextMenus.onClicked.addListener(function (info, tab) {
 
 /**
