@@ -1,6 +1,8 @@
 # extensions-resize-video
 
-A Firefox extension that adds a set of context menu items to resize video elements.
+A Firefox extension that adds a set of context menu items to resize video, image and selected elements.
+
+This extension merely sets the width or height values of those HTML elements on the currently active tab.
 
 ## To Do
 
