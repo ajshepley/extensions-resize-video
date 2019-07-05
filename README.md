@@ -8,6 +8,7 @@ This extension merely sets the width or height values of those HTML elements on 
 
 In no order,
 
+- [ ] Account for alternative size adjustments (css, maxWidth, etc.)
 - [ ] Add travis.yml/build and export configuration.
 - [ ] Add tests.
 - [ ] Initial creation of context items should be better.
