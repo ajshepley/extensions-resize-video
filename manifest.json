@@ -5,16 +5,13 @@
     "description": "Adds a context menu option to resize video elements.",
     "background": {
         "scripts": [
-            // "resize.js",
             "background.js"
         ]
     },
     "permissions": [
         "menus",
-        // "tabs",
         "contextMenus",
         "activeTab"
-        // "<all_urls>"
     ],
     "content_scripts": [
     ],
