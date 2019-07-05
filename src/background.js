@@ -8,7 +8,6 @@ function onCreated() {
 
 console.log(`Context menus are: ${JSON.stringify(browser.contextMenus)}`);
 
-// FIXME: TODO: Refactor ids to be unique, switch on them rather than directly parsing their values.
 browser.menus.create({
     id: "resize-video_-25",
     title: "-25%",
@@ -75,13 +74,14 @@ chrome.tabs.executeScript(tab.id, {
   // Nested executeScript code block get picky about parsing, so we need to stringify our code params.
   let resizeParams = { resizeAmount: percentForId, targetElementId: info.targetElementId };
   let stringyParams = JSON.stringify(resizeParams);
+  let frameId = info.frameId;
   
   console.debug(`Resize params are: ${stringyParams}`);
   
   browser.tabs.executeScript(tab.id, {
-    frameId: info.frameId,
+    frameId: frameId,
     code: 'resizeParams = ' + stringyParams + ';'
   }, function() {
-      browser.tabs.executeScript(tab.id, { frameId: info.frameId, file: 'resize.js'});
+      browser.tabs.executeScript(tab.id, { frameId: frameId, file: 'resize.js'});
   });
 });
