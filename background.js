@@ -6,11 +6,30 @@ function onCreated() {
   }
 }
 
+// FIXME: TODO: Refactor ids to be unique, switch on them rather than directly parsing their values.
 browser.menus.create({
     id: "-25",
-    title: "Resize -25%",
-    // type: "normal",
-    contexts: ["video", "selection"]
+    title: "-25%",
+    // see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/menus/ContextType
+    contexts: ["video", "image", "selection"]
+}, onCreated);
+
+browser.menus.create({
+    id: "-50",
+    title: "-50%",
+    contexts: ["video", "image", "selection"]
+}, onCreated);
+
+browser.menus.create({
+    id: "25",
+    title: "+25%",
+    contexts: ["video", "image", "selection"]
+}, onCreated);
+
+browser.menus.create({
+    id: "50",
+    title: "+50%",
+    contexts: ["video", "image", "selection"]
 }, onCreated);
 
 browser.contextMenus.onClicked.addListener(function (info, tab) {
