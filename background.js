@@ -40,27 +40,19 @@ browser.menus.create({
     contexts: ["video", "image", "selection"]
 }, onCreated);
 
-function getWholePercentForMenuItem(menuItemId) {
-  let percentForId = 0;
+const MENU_ITEM_PERCENTS = {
+    'resize-video_-25': -25,
+    'resize-video_-50': -50,
+    'resize-video_25': 25,
+    'resize-video_50': 50,
+    'resize-video_100': 100
+};
 
-  switch(menuItemId) {
-    case "resize-video_-25":
-      percentForId = -25;
-      break;
-    case "resize-video_-50":
-      percentForId = -50;
-      break;
-    case "resize-video_25":
-      percentForId = 25;
-      break;
-    case "resize-video_50":
-      percentForId = 50;
-      break;
-    case "resize-video_100":
-      percentForId = 100;
-      break;
-    default:
-      break;
+function getWholePercentForMenuItem(menuItemId) {
+  let percentForId = MENU_ITEM_PERCENTS[menuItemId];
+
+  if (typeof(percentForId) === "undefined") {
+    percentForId = 0;
   }
 
   return percentForId;
