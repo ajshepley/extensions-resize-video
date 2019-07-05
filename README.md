@@ -7,7 +7,6 @@ This extension merely sets the width or height values of those HTML elements on 
 ## To Do
 
 * Initial creation of context items should be better.
-* Context item ids should be used to lookup scale values, rather than parsed directly as scale values.
 * Clean up logging in some way.
 * Implement functionality for always scaling based on original size in some way.
   * e.g. store a map of the `content_url: original_size` and pass it as scaling parameters.
